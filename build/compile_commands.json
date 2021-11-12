@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/pchatzig/SealPIR/build",
+  "command": "/usr/bin/clang++-6.0   -isystem /usr/local/include  -g   -maes -pthread -std=gnu++1z -o CMakeFiles/main.dir/main.cpp.o -c /home/pchatzig/SealPIR/main.cpp",
+  "file": "/home/pchatzig/SealPIR/main.cpp"
+},
+{
+  "directory": "/home/pchatzig/SealPIR/build",
+  "command": "/usr/bin/clang++-6.0    -g   -std=gnu++1z -o CMakeFiles/sealpir.dir/pir.cpp.o -c /home/pchatzig/SealPIR/pir.cpp",
+  "file": "/home/pchatzig/SealPIR/pir.cpp"
+},
+{
+  "directory": "/home/pchatzig/SealPIR/build",
+  "command": "/usr/bin/clang++-6.0    -g   -std=gnu++1z -o CMakeFiles/sealpir.dir/pir_client.cpp.o -c /home/pchatzig/SealPIR/pir_client.cpp",
+  "file": "/home/pchatzig/SealPIR/pir_client.cpp"
+},
+{
+  "directory": "/home/pchatzig/SealPIR/build",
+  "command": "/usr/bin/clang++-6.0    -g   -std=gnu++1z -o CMakeFiles/sealpir.dir/pir_server.cpp.o -c /home/pchatzig/SealPIR/pir_server.cpp",
+  "file": "/home/pchatzig/SealPIR/pir_server.cpp"
+}
+]

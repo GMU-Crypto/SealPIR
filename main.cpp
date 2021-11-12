@@ -113,6 +113,7 @@ int main(int argc, char *argv[]) {
 
     // Output results
     cout << "Main: PIR result correct!" << endl;
+    cout << "blah blah!" << endl;
     cout << "Main: PIRServer pre-processing time: " << time_pre_us / 1000 << " ms" << endl;
     cout << "Main: PIRClient query generation time: " << time_query_us / 1000 << " ms" << endl;
     cout << "Main: PIRServer reply generation time: " << time_server_us / 1000 << " ms"

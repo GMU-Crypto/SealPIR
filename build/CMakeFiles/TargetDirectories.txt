@@ -1,0 +1,4 @@
+/home/pchatzig/SealPIR/build/CMakeFiles/edit_cache.dir
+/home/pchatzig/SealPIR/build/CMakeFiles/main.dir
+/home/pchatzig/SealPIR/build/CMakeFiles/rebuild_cache.dir
+/home/pchatzig/SealPIR/build/CMakeFiles/sealpir.dir

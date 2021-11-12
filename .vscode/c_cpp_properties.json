@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/pchatzig/SealPIR",
+                "/home/pchatzig/SEAL-3.2.0",
+                "/home/pchatzig/SEAL"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x86",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/home/pchatzig/SealPIR",
+                    "/home/pchatzig/SEAL-3.2.0",
+                    "/home/pchatzig/SEAL"
+                ]
+            },
+            "compileCommands": "/home/pchatzig/SealPIR/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
