@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/poa/SealPIR/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++17 -o CMakeFiles/sealpir.dir/pir.cpp.o -c /home/poa/SealPIR/pir.cpp",
+  "file": "/home/poa/SealPIR/pir.cpp"
+},
+{
+  "directory": "/home/poa/SealPIR/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++17 -o CMakeFiles/sealpir.dir/pir_client.cpp.o -c /home/poa/SealPIR/pir_client.cpp",
+  "file": "/home/poa/SealPIR/pir_client.cpp"
+},
+{
+  "directory": "/home/poa/SealPIR/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -std=gnu++17 -o CMakeFiles/sealpir.dir/pir_server.cpp.o -c /home/poa/SealPIR/pir_server.cpp",
+  "file": "/home/poa/SealPIR/pir_server.cpp"
+},
+{
+  "directory": "/home/poa/SealPIR/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -maes -pthread -std=gnu++17 -o CMakeFiles/main.dir/main.cpp.o -c /home/poa/SealPIR/main.cpp",
+  "file": "/home/poa/SealPIR/main.cpp"
+}
+]

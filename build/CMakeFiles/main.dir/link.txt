@@ -1,0 +1,1 @@
+/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/main.dir/main.cpp.o  -o ../bin/main  libsealpir.a /usr/local/lib/libseal.a -pthread 

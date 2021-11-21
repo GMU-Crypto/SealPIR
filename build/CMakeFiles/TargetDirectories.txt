@@ -1,0 +1,4 @@
+/home/poa/SealPIR/build/CMakeFiles/rebuild_cache.dir
+/home/poa/SealPIR/build/CMakeFiles/edit_cache.dir
+/home/poa/SealPIR/build/CMakeFiles/sealpir.dir
+/home/poa/SealPIR/build/CMakeFiles/main.dir
