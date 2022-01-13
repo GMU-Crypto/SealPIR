@@ -14,10 +14,11 @@
 #include <unistd.h>
 #include <string.h>
 #define PORT 12345
-
 using namespace std::chrono;
 using namespace std;
 using namespace seal;
+
+#define CHECK_ELEMENT 0 // Check that we retrieved the correct element in the end
 
 inline unsigned int to_uint(char ch)
 {
@@ -47,9 +48,9 @@ int main(int argc, char *argv[]) {
         return -1;
     }
    
+    random_device rd;
 
-
-    cout << "(1) Creating database (for correctness comparison)" << endl;
+ 
 
     uint64_t number_of_items = 1 << 16;
     uint64_t size_per_item = 1600; // in bytes
@@ -65,8 +66,8 @@ int main(int argc, char *argv[]) {
     // Generates all parameters
     gen_params(number_of_items, size_per_item, N, logt, d, params, pir_params);
 
-    cout << "(1)  Initializing the database (this may take some time) ..." << endl;
-
+    // Initialize PIR Server (for comparison if needed)
+    PIRServer server(params, pir_params);
     // Create test database
     auto db(make_unique<uint8_t[]>(number_of_items * size_per_item));
 
@@ -74,7 +75,13 @@ int main(int argc, char *argv[]) {
     // the correct element.
     auto db_copy(make_unique<uint8_t[]>(number_of_items * size_per_item));
 
-    random_device rd;
+
+    if (CHECK_ELEMENT) {
+    cout << "(1) Creating database (for correctness comparison)" << endl;
+    cout << "(1) Initializing the database (this may take some time) ..." << endl;
+
+
+
     for (uint64_t i = 0; i < number_of_items; i++) {
         for (uint64_t j = 0; j < size_per_item; j++) {
             //auto val = dbseed*dbfact % 3;
@@ -83,9 +90,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Initialize PIR Server (for comparison)
-    PIRServer server(params, pir_params);
 
+    }
     // Initialize PIR client....
     PIRClient client(params, pir_params);
 
@@ -116,12 +122,12 @@ int main(int argc, char *argv[]) {
     cout << "(2) sending... " << send(sock,galois_keys_ser.c_str() ,msgLength ,0) << endl; // Send the message data 
     std::cout << "(2) Correctness test for galois keys:" << to_uint(galois_keys_ser.at(100000)) << endl;
 
-
+    if (CHECK_ELEMENT) {
     // Step 3 database setup
     server.set_database(move(db), number_of_items, size_per_item);
     server.preprocess_database();
     cout << "(3) database pre processed " << endl;
-
+    }
 
 
 /*
@@ -133,6 +139,8 @@ int main(int argc, char *argv[]) {
 */
     // Measure query generation
     cout << "(4) Generating query..." << endl;
+    auto time_query_s = high_resolution_clock::now();
+
     // Choose an index of an element in the DB
     uint64_t ele_index = rd() % number_of_items; // element in DB at random position
     uint64_t index = client.get_fv_index(ele_index, size_per_item);   // index of FV plaintext
@@ -168,6 +176,10 @@ int main(int argc, char *argv[]) {
     std::cout << "(5) Correctness test for reply:" << to_uint(temp.at(1000)) << endl;
 
     PirReply reply = deserialize_ciphertexts(1, temp, CIPHER_SIZE);  
+    auto time_query_e = high_resolution_clock::now();
+    auto time_query_us = duration_cast<microseconds>(time_query_e - time_query_s).count();
+    cout << "Client query - reply total time: " << time_query_us / 1000 << " ms" << endl;
+
     std::cout << "(5) - a" << endl;
 
     Plaintext result = client.decode_reply(reply);
@@ -176,6 +188,8 @@ int main(int argc, char *argv[]) {
     // Convert from FV plaintext (polynomial) to database element at the client
     vector<uint8_t> elems(N * logt / 8);
     coeffs_to_bytes(logt, result, elems.data(), (N * logt) / 8);
+
+    if (CHECK_ELEMENT) {
     std::cout << "(5) - c" << endl;
     // Check that we retrieved the correct element
     for (uint32_t i = 0; i < size_per_item; i++) {
@@ -186,6 +200,6 @@ int main(int argc, char *argv[]) {
             return -1;
         }
     }
-
+    }
     return 0;
 }
